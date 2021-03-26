@@ -7,10 +7,33 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter Movies"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          )
+        ],
       ),
       drawer: DrawerWidget(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.all_inclusive),
+        onPressed: (){
 
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: "Favoritos",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star),
+            label: "Más valoradas",
+          ),
+        ],
+      ),
     );
   }
 }
-
