@@ -49,7 +49,27 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Text("Nombre película"),
-                background: Image.network("https://as02.epimg.net/meristation/imagenes/2021/03/23/noticias/1616512421_355291_1616512451_noticia_normal_recorte1.jpg"),
+                background: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.network("https://as02.epimg.net/meristation/imagenes/2021/03/23/noticias/1616512421_355291_1616512451_noticia_normal_recorte1.jpg",
+                    fit: BoxFit.fitWidth,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.black54,
+                            Colors.black
+                          ]
+                        ),
+                      ),
+                    ),
+
+                  ],
+                )
               ),
               
             ),
