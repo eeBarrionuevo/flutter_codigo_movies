@@ -52,7 +52,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
+
+      body: moviesList != null ? Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -68,72 +69,77 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: moviesList == null ? 0 : moviesList.length,
               itemBuilder: (context, index) {
-                return Row(
-                  children: [
-                    // Aquí estará la imagen
-
-                    Container(
-                      child: Container(
-                        width: 90.0,
-                        height: 90.0,
-                      ),
-                      margin: EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              image_url + moviesList[index]["poster_path"],
-                          ),
-                          fit: BoxFit.cover
+                return GestureDetector(
+                  onTap: (){
+                    print(moviesList[index]['id']);
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Container(
+                          width: 90.0,
+                          height: 90.0,
                         ),
-                        borderRadius: BorderRadius.circular(10.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black54,
-                            blurRadius: 7,
-                            offset: Offset(2,3)
+                        margin: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).accentColor,
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                image_url + moviesList[index]["poster_path"],
+                              ),
+                              fit: BoxFit.cover
                           ),
-                        ],
-                      ),
-
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
-                        child: Column(
-                          children: [
-                            Text(
-                              moviesList[index]["original_title"] ?? "",
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Row(
-                              children: [
-                                Icon(Icons.star),
-                                Text(moviesList[index]["popularity"].toString())
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Text(
-                              moviesList[index]["overview"],
-                              maxLines: 3,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 7,
+                                offset: Offset(2,3)
                             ),
                           ],
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+
+                      ),
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          child: Column(
+                            children: [
+                              Text(
+                                moviesList[index]["original_title"] ?? "",
+                                style: TextStyle(
+                                    fontSize: 18.0, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(Icons.star),
+                                  Text(moviesList[index]["popularity"].toString())
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                moviesList[index]["overview"],
+                                maxLines: 3,
+                              ),
+                            ],
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
           ),
         ],
+      ): Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }
