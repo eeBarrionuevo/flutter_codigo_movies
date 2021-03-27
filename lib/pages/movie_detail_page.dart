@@ -96,26 +96,40 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             ),
                           )),
                     ),
-                    Column(
-                      children: [
-                        Text("Titulo Película"),
-                        RichText(
-                          text: TextSpan(
-                            text: "2020 ",
-                            children: [
-                              TextSpan(
-                                text: " - ",
-                              ),
-                              TextSpan(
-                                text: " 120 min ",
-                              )
-                            ],
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Titulo Película",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 18.0),
                           ),
-                        ),
-                        Row(
-                          children: [Icon(Icons.star), Text("12323")],
-                        ),
-                      ],
+                          SizedBox(
+                            height: 7.0,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "2020 ",
+                              children: [
+                                TextSpan(
+                                  text: " - ",
+                                ),
+                                TextSpan(
+                                  text: " 120 min ",
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 7.0,
+                          ),
+                          Row(
+                            children: [Icon(Icons.star), Text("12323")],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -151,7 +165,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       padding: const EdgeInsets.all(12.0),
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text("Alquilar en HD por 55.00 PE", textAlign: TextAlign.center,),
+                        child: Text(
+                          "Alquilar en HD por 55.00 PE",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -160,7 +177,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                       padding: const EdgeInsets.all(12.0),
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: Text("Alquilar en HD por 55.00 PE", textAlign: TextAlign.center,),
+                        child: Text(
+                          "Alquilar en HD por 55.00 PE",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   )
