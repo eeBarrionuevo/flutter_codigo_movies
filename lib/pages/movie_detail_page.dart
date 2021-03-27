@@ -39,7 +39,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
+      body: movieDetail != null ?  NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
@@ -50,14 +50,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   title: Text(
-                    "Nombre película",
+                    movieDetail["original_title"] ?? "",
                     style: TextStyle(fontSize: 14.0),
                   ),
                   background: Stack(
                     fit: StackFit.expand,
                     children: [
                       Image.network(
-                        "https://as02.epimg.net/meristation/imagenes/2021/03/23/noticias/1616512421_355291_1616512451_noticia_normal_recorte1.jpg",
+                        "https://image.tmdb.org/t/p/w500/${movieDetail["backdrop_path"]}",
                         fit: BoxFit.fitWidth,
                       ),
                       Container(
@@ -92,7 +92,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
-                              "https://images.pexels.com/photos/3866555/pexels-photo-3866555.png?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                              "https://image.tmdb.org/t/p/w500/${movieDetail["poster_path"]}",
                             ),
                           )),
                     ),
@@ -102,7 +102,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Titulo Película",
+                            movieDetail["original_title"],
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 18.0),
                           ),
@@ -111,13 +111,13 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                           ),
                           RichText(
                             text: TextSpan(
-                              text: "2020 ",
+                              text: movieDetail["release_date"],
                               children: [
                                 TextSpan(
-                                  text: " - ",
+                                  text: " / ",
                                 ),
                                 TextSpan(
-                                  text: " 120 min ",
+                                  text: "${movieDetail["runtime"].toString()} min.",
                                 )
                               ],
                             ),
@@ -126,7 +126,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                             height: 7.0,
                           ),
                           Row(
-                            children: [Icon(Icons.star), Text("12323")],
+                            children: [Icon(Icons.star), Text(movieDetail["vote_average"].toString())],
                           ),
                         ],
                       ),
@@ -154,7 +154,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                  movieDetail["overview"] ?? "",
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -189,7 +189,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             ],
           ),
         ),
-      ),
+      ) : Center(child: CircularProgressIndicator(),),
     );
   }
 }
