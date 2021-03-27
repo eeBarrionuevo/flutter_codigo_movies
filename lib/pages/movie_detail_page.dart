@@ -38,10 +38,24 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: movieDetail != null
-            ? Text("Hola ${movieDetail["original_title"]}")
-            : CircularProgressIndicator(),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
+          return <Widget>[
+            SliverAppBar(
+              pinned: false,
+              floating: true,
+              snap: false ,
+              expandedHeight: 220.0,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text("Nombre película"),
+                background: Image.network("https://as02.epimg.net/meristation/imagenes/2021/03/23/noticias/1616512421_355291_1616512451_noticia_normal_recorte1.jpg"),
+              ),
+              
+            ),
+          ];
+        },
+        body: Center(child: Text("asdsad"),),
       ),
     );
   }
