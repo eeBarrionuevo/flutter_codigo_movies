@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_codigo_movies/pages/movie_detail_page.dart';
 import 'package:flutter_codigo_movies/widgets/drawer_widget.dart';
 import 'package:http/http.dart' as http;
 
@@ -71,7 +72,8 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: (){
-                    print(moviesList[index]['id']);
+                    int id = moviesList[index]['id'];
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> MovieDetailPage(id: id,)));
                   },
                   child: Row(
                     children: [
